@@ -1,0 +1,34 @@
+{
+  "name": "kdubiel",
+  "license": "MIT",
+  "author": "Kamil Dubiel",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "devDependencies": {
+    "husky": "^4.2.3",
+    "lerna": "^3.20.2"
+  },
+  "scripts": {
+    "watch": "lerna run watch --parallel",
+    "watch:backend": "yarn workspace backend run watch",
+    "watch:frontend": "yarn workspace frontend run watch",
+    "build:backend": "yarn workspace backend run build",
+    "build:frontend": "yarn workspace frontend run build",
+    "lint": "lerna run --stream lint",
+    "lint:fix": "lerna run --stream lint:fix",
+    "lint:backend": "yarn workspace backend run lint",
+    "lint:backend:fix": "yarn workspace backend run lint:fix",
+    "lint:frontend": "yarn workspace frontend run lint",
+    "lint:frontend:fix": "yarn workspace frontend run lint:fix",
+    "deploy:backend": "git subtree push --prefix backend heroku master",
+    "deploy:frontend": "yarn workspace frontend run deploy"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  }
+}
